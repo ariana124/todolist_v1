@@ -15,11 +15,30 @@ app.get("/", function(req, res) {
     let currentDay = today.getDay();
     let day = "";
     
-    // 6 stands for Saturday and 0 stands for Sunday
-    if (currentDay === 6 || currentDay === 0) {
-        day = "Weekend :)";
-    } else {
-        day = "Weekday :|"
+    switch (currentDay) {
+        case 0 :
+            day = "Sunday :)";
+            break;
+        case 1 :
+            day = "Monday :/";
+            break;
+        case 2 :
+            day = "Tuesday :|";
+            break;
+        case 3 :
+            day = "Wednesday :|";
+            break;
+        case 4 :
+            day = "Thursday :|";
+            break;
+        case 5 :
+            day = "Friday :)";
+            break;
+        case 6 :
+            day = "Saturday :)";
+            break;
+        default:
+            console.log(`Error: current day is ${currentDay}`);
     }
 
     // Here we render an ejs file called list that exists within the views folder and we pass in the value of the variable kindOfDay with the type of day: weekend or weekday.
