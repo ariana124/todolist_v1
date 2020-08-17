@@ -6,11 +6,20 @@
     <title>To Do List</title>
     <style>
         * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             font-family: monospace;
         }
     </style>
 </head>
 <body>
-    <h1>It's <%= kindOfDay %></h1>
+
+<%  if (kindOfDay === "Saturday" || kindOfDay === "Sunday") {  %>
+        <h1 style="color: dodgerblue"><%= kindOfDay %> List</h1>
+<%  } else {  %>
+        <h1 style="color: steelblue"><%= kindOfDay %> List</h1>
+<%  }  %>
+
 </body>
 </html>
