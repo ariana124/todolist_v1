@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+let items = [];
+
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -24,11 +26,15 @@ app.get("/", function(req, res) {
     let day = today.toLocaleDateString("en-US", options);
 
     // Here we render an ejs file called list that exists within the views folder and we pass in the value of the variable kindOfDay with the type of day: weekend or weekday.
-    res.render("list", {kindOfDay: day});
+    res.render("list", {kindOfDay: day, newListItems: items});
 });
 
 app.post("/", function(req, res) {
 
     let item = req.body.newItem;
-    console.log(item);
-})
+
+    items.push(item);
+    
+    // This will redirect us to our home route and trigger the app.get where it will then render the list template, passing in kindOfDay and newListItem.
+    res.redirect("/");
+});
