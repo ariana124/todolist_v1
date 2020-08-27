@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-let items = [];
+let items = ["Reading Progress", "Udemy Course", "Art Concepts"];
 
 app.set("view engine", "ejs");
 
