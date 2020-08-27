@@ -21,6 +21,11 @@
         <li>Reading Progress</li>
         <li>Udemy Course</li>
         <li>Art Concepts</li>
+
+    <% for (const item in newListItems) { %>
+        <li><%= newListItems[item] %></li>
+    <% } %>
+
     </ul>
 
     <form action="/" method="post">
