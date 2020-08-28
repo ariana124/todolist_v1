@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
+    <link rel="stylesheet" href="css/style.css">
     <style>
         * {
             box-sizing: border-box;
@@ -15,18 +16,23 @@
 </head>
 <body>
 
-    <h1> <%= kindOfDay %> </h1>
+    <div class="box" id="heading">
+        <h1> <%= kindOfDay %> </h1>
+    </div>
 
-    <ul>
-    <% for (const item in newListItems) { %>
-        <li><%= newListItems[item] %></li>
-    <% } %>
-    </ul>
+    <div class="box">
+        <% for (const item in newListItems) { %>
+            <div class="item">
+                <input type="checkbox">
+                <p><%= newListItems[item] %></p>
+            </div>
+        <% } %>
 
-    <form action="/" method="post">
-        <input name="newItem" type="text">
-        <button type="submit" name="button">Add</button>
-    </form>
+        <form class="item" action="/" method="post">
+            <input name="newItem" type="text" placeholder="New Item">
+            <button type="submit" name="button">+</button>
+        </form>
+    </div>
 
 </body>
 </html>
