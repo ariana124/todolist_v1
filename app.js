@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 
 let items = ["Reading Progress", "Udemy Course", "Art Concepts"];
+let workItems = [];
 
 app.set("view engine", "ejs");
 
@@ -28,15 +29,35 @@ app.get("/", function(req, res) {
     let day = today.toLocaleDateString("en-US", options);
 
     // Here we render an ejs file called list that exists within the views folder and we pass in the value of the variable kindOfDay with the type of day: weekend or weekday.
-    res.render("list", {kindOfDay: day, newListItems: items});
+    res.render("list", {listTitle: day, newListItems: items});
 });
 
 app.post("/", function(req, res) {
 
+    console.log(req.body);
+
     let item = req.body.newItem;
 
-    items.push(item);
+    if (req.body.list === "Work List") {
+        workItems.push(item);
+        res.redirect("/work");
+    } else {
+        items.push(item);
+        res.redirect("/");
+    }
     
-    // This will redirect us to our home route and trigger the app.get where it will then render the list template, passing in kindOfDay and newListItem.
+    // res.redirect("/") redirects us to our home route and trigger the app.get where it will then render the list template, passing in listTitle and newListItem.
+});
+
+app.get("/work", function(req, res) {
+    res.render("list", {listTitle: "Work List", newListItems: workItems});
+});
+
+app.post("/work", function(req, res) {
+
+    let item = req.body.newItem;
+
+    workItems.push(item);
+
     res.redirect("/");
 });
